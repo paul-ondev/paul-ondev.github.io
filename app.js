@@ -1,3 +1,4 @@
+'use strict'
 window.addEventListener('load', ()=>{
     let long;
     let lat;
@@ -46,9 +47,16 @@ window.addEventListener('load', ()=>{
 
                 })
 
+        }, error => {
+            console.log('Произошла ошибка при определении местоположения!');
+            let alertDiv = document.createElement('div');
+            alertDiv.className = "alert";
+            alertDiv.innerHTML = "Service is not working!<br> Please, refresh this page and allow browser to see your geolocation.";
+            document.body.prepend(alertDiv);
         })
     } else {
-        console.log("allow to geolocate");
+        alert('Service is not working! Your browser do not support defining of geolocation.')
+        
     }
     function setIcon(iconNumber, mainDescription) {
         let img = document.getElementById('iconImg');
